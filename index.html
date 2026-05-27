@@ -18,27 +18,38 @@
 
 <!-- لما الـ user logged in -->
     <div id="app-screen" class="hidden">
-    <header>
-        <h1>My Clients</h1>
-        <span id="user-name"></span>
-        <button id="btn-logout">Logout</button>
-    </header>
+        <header>
+            <h1>My Clients</h1>
+            <span id="user-name"></span>
+            <button id="btn-logout">Logout</button>
+        </header>
 
-    <!-- Form لإضافة client -->
-    <div id="add-client-form">
-        <input type="text" id="input-name" placeholder="Client name" />
-        <input type="text" id="input-project" placeholder="Project name" />
-        <select id="input-status">
-        <option value="In Progress">In Progress</option>
-        <option value="Done">Done</option>
-        <option value="Pending">Pending</option>
-        </select>
-        <input type="number" id="input-budget" placeholder="Budget $" />
-        <button id="btn-add-client">+ Add Client</button>
-    </div>
+        <!-- Form لإضافة client -->
+        <div id="add-client-form">
+            <input type="text" id="input-name" placeholder="Client name" />
+            <input type="text" id="input-project" placeholder="Project name" />
+            <select id="input-status">
+            <option value="In Progress">In Progress</option>
+            <option value="Done">Done</option>
+            <option value="Pending">Pending</option>
+            </select>
+            <input type="number" id="input-budget" placeholder="Budget $" />
+            <button id="btn-add-client">+ Add Client</button>
+        </div>
 
-    <!-- List of clients -->
-    <main id="clients-list"></main>
+
+        <input type="text" id="input-search" placeholder="Search clients..." />
+        
+        <div id="filter-tabs">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="In Progress">In Progress</button>
+            <button class="filter-btn" data-filter="Done">Done</button>
+            <button class="filter-btn" data-filter="Pending">Pending</button>
+        </div>
+
+        <!-- List of clients -->
+        <main id="clients-list"></main>
+
     </div>   
 
 

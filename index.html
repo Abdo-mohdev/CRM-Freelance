@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRM</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    
+<!-- لما الـ user مش logged in -->
+    <div id="auth-screen">
+        <h1>Freelance CRM</h1>
+        <button id="btn-google">Sign in with Google</button>
+    </div>
+
+<!-- لما الـ user logged in -->
+    <div id="app-screen" class="hidden">
+    <header>
+        <h1>My Clients</h1>
+        <span id="user-name"></span>
+        <button id="btn-logout">Logout</button>
+    </header>
+
+    <!-- Form لإضافة client -->
+    <div id="add-client-form">
+        <input type="text" id="input-name" placeholder="Client name" />
+        <input type="text" id="input-project" placeholder="Project name" />
+        <select id="input-status">
+        <option value="In Progress">In Progress</option>
+        <option value="Done">Done</option>
+        <option value="Pending">Pending</option>
+        </select>
+        <input type="number" id="input-budget" placeholder="Budget $" />
+        <button id="btn-add-client">+ Add Client</button>
+    </div>
+
+    <!-- List of clients -->
+    <main id="clients-list"></main>
+    </div>   
+
+
+
+
+
+
+
+<script type="module" src="app.js"></script>
+</body>
+</html>

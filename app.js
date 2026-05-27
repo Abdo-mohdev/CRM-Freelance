@@ -307,3 +307,37 @@ async function deleteClient(id) {
   }
 }
 window.deleteClient = deleteClient
+
+// ══════════════════════════════════
+// EXPORT CSV
+// ══════════════════════════════════
+function exportCSV() {
+  if (allClients.length === 0) {
+    alert('No clients to export yet!')
+    return
+  }
+
+  const rows = [['Name', 'Project', 'Status', 'Budget', 'Country', 'Currency']]
+
+  allClients.forEach(({ client: c }) => {
+    rows.push([
+      c.name            || '',
+      c.project         || '',
+      c.status          || '',
+      c.budget          || 0,
+      c.country         || '',
+      c.countryCurrency || ''
+    ])
+  })
+
+  const csv  = rows.map(r => r.map(v => `"${v}"`).join(',')).join('\n')
+  const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' })
+  const url  = URL.createObjectURL(blob)
+  const a    = document.createElement('a')
+  a.href     = url
+  a.download = `clients-${new Date().toISOString().slice(0,10)}.csv`
+  a.click()
+  URL.revokeObjectURL(url)
+}
+
+document.getElementById('btn-export').addEventListener('click', exportCSV)

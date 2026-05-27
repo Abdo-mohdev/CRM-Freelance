@@ -1,62 +1,158 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CRM</title>
-
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Freelance CRM</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="https://fav.farm/⚡" />
 </head>
 <body>
-    
-    
-<!-- لما الـ user مش logged in -->
-    <div id="auth-screen">
-        <h1>Freelance CRM</h1>
-        <button id="btn-google">Sign in with Google</button>
+
+<!-- ══ AUTH SCREEN ══ -->
+<div id="auth-screen">
+  <h1>Freelance CRM</h1>
+  <p>Manage your clients & projects</p>
+  <button id="btn-google">Sign in with Google</button>
+</div>
+
+<!-- ══ APP SCREEN ══ -->
+<div id="app-screen" class="hidden">
+
+  <!-- Mobile top bar -->
+  <div id="mobile-topbar">
+    <h2>⚡ CRM</h2>
+    <span id="mobile-user-name" style="font-size:12px;color:var(--muted)"></span>
+  </div>
+
+  <!-- Sidebar (desktop) -->
+  <aside id="sidebar">
+    <div class="sidebar-logo">
+      <h2>⚡ Freelance CRM</h2>
+      <span id="user-name"></span>
     </div>
 
-<!-- لما الـ user logged in -->
-    <div id="app-screen" class="hidden">
-        <header>
-            <h1>My Clients</h1>
-            <span id="user-name"></span>
-            <button id="btn-logout">Logout</button>
-        </header>
+    <nav class="sidebar-nav">
+      <button class="nav-item active" data-view="clients">
+        <span class="nav-icon">👥</span> Clients
+      </button>
+      <button class="nav-item" data-view="add" id="sidebar-add-btn">
+        <span class="nav-icon">＋</span> Add Client
+      </button>
+    </nav>
 
-        <!-- Form لإضافة client -->
-        <div id="add-client-form">
-            <input type="text" id="input-name" placeholder="Client name" />
-            <input type="text" id="input-project" placeholder="Project name" />
-            <select id="input-status">
-            <option value="In Progress">In Progress</option>
-            <option value="Done">Done</option>
-            <option value="Pending">Pending</option>
-            </select>
-            <input type="number" id="input-budget" placeholder="Budget $" />
-            <button id="btn-add-client">+ Add Client</button>
+    <div class="sidebar-bottom">
+      <div class="user-info">
+        <div class="user-avatar" id="user-avatar-wrap">👤</div>
+        <div class="user-details">
+          <div class="user-display-name" id="user-display-name">—</div>
+          <div class="user-email" id="user-email">—</div>
         </div>
+      </div>
+      <button id="btn-logout">Sign out</button>
+    </div>
+  </aside>
 
+  <!-- Main content -->
+  <div id="main-content">
 
-        <input type="text" id="input-search" placeholder="Search clients..." />
-        
-        <div id="filter-tabs">
-            <button class="filter-btn active" data-filter="all">All</button>
-            <button class="filter-btn" data-filter="In Progress">In Progress</button>
-            <button class="filter-btn" data-filter="Done">Done</button>
-            <button class="filter-btn" data-filter="Pending">Pending</button>
-        </div>
+    <!-- Page header -->
+    <div class="page-header">
+      <div>
+        <h1>Clients</h1>
+        <p id="client-count-label">Loading…</p>
+      </div>
+      <button id="btn-show-form">+ Add Client</button>
+    </div>
 
-        <!-- List of clients -->
-        <main id="clients-list"></main>
+    <!-- Stats row -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-label">Total Clients</div>
+        <div class="stat-value white" id="stat-total">0</div>
+        <div class="stat-sub">all time</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Total Budget</div>
+        <div class="stat-value green" id="stat-budget">$0</div>
+        <div class="stat-sub">across all clients</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">In Progress</div>
+        <div class="stat-value blue" id="stat-inprogress">0</div>
+        <div class="stat-sub">active projects</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Completed</div>
+        <div class="stat-value yellow" id="stat-done">0</div>
+        <div class="stat-sub">projects done</div>
+      </div>
+    </div>
 
-    </div>   
+    <!-- Toolbar -->
+    <div class="toolbar">
+      <input type="text" id="input-search" placeholder="🔍  Search clients…" />
+      <div id="filter-tabs">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="In Progress">In Progress</button>
+        <button class="filter-btn" data-filter="Done">Done</button>
+        <button class="filter-btn" data-filter="Pending">Pending</button>
+      </div>
+    </div>
 
+    <!-- Table header -->
+    <div class="table-header">
+      <span>Client</span>
+      <span>Country</span>
+      <span>Status</span>
+      <span>Budget</span>
+      <span></span>
+    </div>
 
+    <!-- Clients list -->
+    <main id="clients-list"></main>
+  </div>
 
+  <!-- Mobile bottom nav -->
+  <div id="mobile-nav">
+    <button class="mobile-nav-btn active" data-view="clients">
+      <span class="nav-icon">👥</span>
+      Clients
+    </button>
+    <button class="mobile-nav-btn" data-view="add" id="mobile-add-btn">
+      <span class="nav-icon">＋</span>
+      Add
+    </button>
+    <button class="mobile-nav-btn" id="mobile-logout-btn">
+      <span class="nav-icon">🚪</span>
+      Sign out
+    </button>
+  </div>
+</div>
 
+<!-- ══ MODAL: ADD CLIENT FORM ══ -->
+<div id="modal-overlay" class="hidden">
+  <div id="add-client-form">
+    <div class="form-title">New Client</div>
+    <button class="form-close" id="btn-close-modal">✕</button>
 
+    <input type="text"   id="input-name"    placeholder="Client name" />
+    <input type="text"   id="input-project" placeholder="Project name" />
 
+    <select id="input-status">
+      <option value="In Progress">In Progress</option>
+      <option value="Done">Done</option>
+      <option value="Pending">Pending</option>
+    </select>
+
+    <input type="number" id="input-budget"  placeholder="Budget $" />
+
+    <input type="text"   id="input-country" placeholder="Country (e.g. Egypt)" style="grid-column: 1 / -1" />
+    <div id="country-dropdown" class="hidden"></div>
+
+    <button id="btn-add-client">+ Add Client</button>
+  </div>
+</div>
 
 <script type="module" src="app.js"></script>
 </body>
